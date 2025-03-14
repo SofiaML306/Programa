@@ -1,0 +1,26 @@
+#include <iostream>
+#include <thread>
+#include <chrono>
+using namespace std;
+
+void leer_archivo() {
+    cout << "Comenzando a leer el archivo..." << endl;
+    this_thread::sleep_for(chrono::seconds(3));
+    cout << "Lectura de archivo completa." << endl;
+}
+
+void hacer_otras_tareas() {
+    cout << "Haciendo otras tareas mientras se lee el archivo..." << endl;
+    this_thread::sleep_for(chrono::seconds(1));
+    cout << "Otras tareas completas." << endl;
+}
+
+int main() {
+    thread hilo1(leer_archivo);
+    thread hilo2(hacer_otras_tareas);
+
+    hilo1.join();
+    hilo2.join();
+
+    return 0;
+}
